@@ -7,8 +7,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class LoginService {
-  baseUrl = environment.baseUrl;
-  private resourceUrl = this.baseUrl + '/api';
+  baseUrl = environment.baseUrl
+  private resourceUrl = 'http://server-qlch.herokuapp.com/api';
   constructor(
     private http: HttpClient
   ) { }
