@@ -107,7 +107,7 @@
                 >
                 <div class="col-sm-7 pd-l-0 pd-r-10">
                   <select class="form-control form-control-sm" name="userStoreID" [(ngModel)]="ppOrder.userStoreID"
-                    (ngModelChange)="changeSupplier()">
+                    >
                   <option [ngValue]="item.id"
                       *ngFor="let item of users">{{item.code}}</option>
                   </select>
