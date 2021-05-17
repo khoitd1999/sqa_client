@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class LoginService {
   baseUrl = environment.baseUrl;
-  private resourceUrl = this.baseUrl + '/ahepi';
+  private resourceUrl = this.baseUrl + '/api';
   constructor(
     private http: HttpClient
   ) { }
