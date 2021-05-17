@@ -1,0 +1,19 @@
+<div class="container">
+  <form action="" method="">
+    <div class="imgcontainer">
+      <img src="../../assets/imgs/img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container1">
+        <div class="center">
+          <label for="uname"><b>Tài khoản (*)</b></label>
+          <input type="text" placeholder="Nhập tài khoản" [(ngModel)]="user.username" name="username" required>
+
+          <label for="psw"><b>Mật khẩu (*)</b></label>
+          <input type="password" placeholder="Nhập mật khẩu" [(ngModel)]="user.password" name="password" required>
+
+          <button type="button" (click)="checkUser()">Đăng nhập</button>
+        </div>
+    </div>
+  </form>
+</div>

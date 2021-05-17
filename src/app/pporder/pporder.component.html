@@ -1,0 +1,119 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background: #f26f21 !important;">
+  <label class="navbar-brand">CỬA HÀNG ABC</label>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <a class="navbar-brand" href="#"></a>
+  </div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="" (click)="logout()">Đăng xuất<span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div style="padding: 1% 2% 1% 2%;">
+  <div class="gr-toolbar">
+    <label style="margin: 6px; color: #fff; font-weight: 600;">ĐƠN NHẬP HÀNG</label>
+    <div class="wrapper-gr-toolbar">
+      <button class="gr-toolbar-button" (click)="addNew()">Thêm</button>
+      <button *ngIf="ppOrders.length > 0" class="gr-toolbar-button" (click)="delete(contentClose)" style="margin-left: 50px;">Xóa</button>
+    </div>
+  </div>
+  <br />
+  <div
+    class="table-wrapper-scroll-y my-custom-scrollbar tableFixHead"
+    style="height: auto;"
+    id="scrollbar"
+  >
+    <table class="table table-bordered table-sm">
+      <thead>
+        <tr class="head-table" style="height: 50px;">
+          <th scope="col" class="align-middle text-center" style="color: #fff !important;">Ngày nhận hàng</th>
+          <th scope="col" class="align-middle text-center" style="color: #fff !important;">Số đơn hàng</th>
+          <th scope="col" class="align-middle text-center" style="color: #fff !important;">Mã nhà cung cấp</th>
+          <th scope="col" class="align-middle text-center" style="color: #fff !important;">Tổng giá trị</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of ppOrders ;let i=index"
+            [class.selected]="item === selectRow"
+            [class.not-selected]="item !== selectRow"
+            (click)="selectElement(item)"
+            (dblclick)="doubleClick(item)"
+        >
+          <td style="text-align: center;">{{formatDate(item.date)}}</td>
+          <td style="text-align: center;">{{item.no}}</td>
+          <td style="text-align: center;">{{item.supplierCode}}</td>
+          <td style="text-align: center;">{{item.totalAmount}}</td>
+        </tr>
+        <tr
+          *ngFor="let item of newRow(pageSize - ppOrders?.length)"
+          [class.not-selected]="true"
+        >
+          <td style="color: #f6f6f2;">.</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="padding-right: 16px; margin-top: 10px;">
+    <div class="row justify-content-end">
+      <div class="col-lg-2">
+        <div class="form-group row">
+          <label
+            class="col-sm-7 col-form-label"
+            for="itemsPerPage"
+            style="padding-right: 0px; text-align: right;"
+            ><span></span>Tổng: {{totalItems}}</label
+          >
+          <div class="col-sm-5 pd-l-0">
+            <select
+              class="form-control form-control-sm"
+              name="itemsPerPage"
+              id="itemsPerPage"
+              style="background-color: #f5f7fa; height: 39px;"
+              [(ngModel)]="pageSize"
+              (ngModelChange)="selectedItemPerPage()"
+            >
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="justify-content-end">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [(page)]="page"
+          [pageSize]="pageSize"
+          [maxSize]="maxSize"
+          rotate="true"
+          boundaryLinks="true"
+          (pageChange)="loadPage()"
+        ></ngb-pagination>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #contentClose let-q="dismiss">
+  <div class="modal-body">
+      <form>
+          <div class="form-group">
+              <label jhiTranslate="ebwebApp.saBill.saveMessage">Dữ liệu đã bị thay đổi, Bạn có muốn lưu lại?</label>
+          </div>
+      </form>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-outline-success" (click)="doDelete()">
+          Xóa
+      </button>
+      <button type="button" class="btn btn-outline-dark" (click)="q('Close')">Đóng
+      </button>
+  </div>
+</ng-template>

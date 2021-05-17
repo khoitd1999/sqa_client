@@ -1,0 +1,280 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background: #f26f21 !important;">
+  <label class="navbar-brand">CỬA HÀNG ABC</label>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <a class="navbar-brand" href="#"></a>
+  </div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="" (click)="logout()">Đăng xuất<span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div style="padding: 1% 2% 1% 2%;">
+  <div class="gr-toolbar">
+    <label style="margin: 6px; color: #fff; font-weight: 600;">ĐƠN NHẬP HÀNG</label>
+    <div class="wrapper-gr-toolbar">
+      <button class="gr-toolbar-button" (click)="back()">Quay lại</button>
+      <button class="gr-toolbar-button" (click)="save()" style="margin-left: 50px;">Lưu</button>
+    </div>
+  </div>
+  <br />
+  <div class="frm-main container">
+    <div class="row no-gutters">
+      <div class="col-lg-12">
+        <form style="border: none">
+          <div class="row no-gutters">
+            <div class="col-lg-12">
+              <div class="form-group row no-gutters">
+                <label
+                  class="col-sm-2 my-col-form-label"
+                  style="padding-right: 0px; margin-left: 10%"
+                >
+                  Số đơn hàng (*)</label
+                >
+                <div class="col-sm-7 pd-l-0 pd-r-10">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="no"
+                    id="no"
+                    [(ngModel)]="ppOrder.no"
+                    [disabled]="ppOrder && ppOrder.id"
+                  />
+                </div>
+              </div>
+              <div class="form-group row no-gutters">
+                <label
+                  class="col-sm-2 my-col-form-label"
+                  style="padding-right: 0px; margin-left: 10%"
+                >
+                  Nhà cung cấp</label
+                >
+                <div class="col-sm-7 pd-l-0 pd-r-10">
+                  <select class="form-control form-control-sm" name="supplierID" [(ngModel)]="ppOrder.supplierID"
+                    (ngModelChange)="changeSupplier()">
+                  <option [ngValue]="item.id"
+                      *ngFor="let item of suppliers">{{item.supplierCode}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row no-gutters">
+                <label
+                  class="col-sm-2 my-col-form-label"
+                  style="padding-right: 0px; margin-left: 10%"
+                >
+                  Địa chỉ</label
+                >
+                <div class="col-sm-7 pd-l-0 pd-r-10">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="address"
+                    id="address"
+                    [(ngModel)]="supplier.address"
+                    disabled
+                  />
+                </div>
+              </div>
+              <div class="form-group row no-gutters">
+                <label
+                  class="col-sm-2 my-col-form-label"
+                  style="padding-right: 0px; margin-left: 10%"
+                >
+                  Số điện thoại</label
+                >
+                <div class="col-sm-7 pd-l-0 pd-r-10">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="phone"
+                    id="phone"
+                    [(ngModel)]="supplier.phone"
+                    disabled
+                  />
+                </div>
+              </div>
+              <div class="form-group row no-gutters">
+                <label
+                  class="col-sm-2 my-col-form-label"
+                  style="padding-right: 0px; margin-left: 10%"
+                >
+                  Nhân viên thực hiện</label
+                >
+                <div class="col-sm-7 pd-l-0 pd-r-10">
+                  <select class="form-control form-control-sm" name="userStoreID" [(ngModel)]="ppOrder.userStoreID"
+                    (ngModelChange)="changeSupplier()">
+                  <option [ngValue]="item.id"
+                      *ngFor="let item of users">{{item.code}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row no-gutters">
+                <label
+                  class="col-sm-2 my-col-form-label"
+                  style="padding-right: 0px; margin-left: 10%"
+                >
+                  Ngày nhận hàng (*)</label
+                >
+                <div class="col-sm-7 pd-l-0 pd-r-10">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="date"
+                    id="date"
+                    [(ngModel)]="date"
+                    placeholder="Định dạng ngày dd/MM/yyyy"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div
+    class="table-wrapper-scroll-y my-custom-scrollbar tableFixHead"
+    style="height: auto;"
+    id="scrollbar"
+  >
+    <table class="table table-bordered table-sm">
+      <thead>
+        <tr class="head-table" style="height: 50px;">
+          <th scope="col" class="align-middle text-center" style="color: #fff !important;">Mã hàng</th>
+          <th scope="col" class="align-middle text-center" style="color: #fff !important;">Tên hàng</th>
+          <th scope="col" class="align-middle text-center" style="color: #fff !important;">Đơn vị tính</th>
+          <th scope="col" class="align-middle text-center" style="color: #fff !important;">Số lượng</th>
+          <th scope="col" class="align-middle text-center" style="color: #fff !important;">Đơn giá</th>
+          <th scope="col" class="align-middle text-center" style="color: #fff !important;">Thành tiền</th>
+          <th scope="col" class="align-middle text-center" style="color: #fff !important;">Tỷ lệ chiết khấu</th>
+          <th scope="col" class="align-middle text-center" style="color: #fff !important;">Tiền chiết khấu</th>
+          <th scope="col" class="align-middle text-center" style="color: #fff !important;">% thuế VAT</th>
+          <th scope="col" class="align-middle text-center" style="color: #fff !important;">Tiền thuế VAT</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of ppOrderDetails ;let i=index"
+            [class.selected]="item === selectRow"
+            [class.not-selected]="item !== selectRow"
+            (click)="selectElement(item)"
+        >
+          <td style="text-align: center;">
+            <select class="form-control form-control-sm" name="materialGoods" [(ngModel)]="item.materialGoodID"
+                    (ngModelChange)="changeMaterialGood()"
+                    [class.selected]="item === selectRow"
+                    [class.not-selected]="item !== selectRow"
+                    style="border:0px;outline:0px;width: 177px;"
+                    >
+                  <option [ngValue]="material.id"
+                      *ngFor="let material of materialGoods">{{material.materialGoodCode}}</option>
+                  </select>
+          </td>
+          <td style="text-align: center;"
+            [class.selected]="item === selectRow"
+            [class.not-selected]="item !== selectRow"
+          >
+            <input style="border: none;outline: 0px; background: transparent;" type="text" class="input-Cell" name="materialGoodName" id="materialGoodName" [(ngModel)]="item.materialGoodName">
+          </td>
+          <td style="text-align: center;">
+            <input style="border: none;outline: 0px; background: transparent;" type="text" class="input-Cell" name="unit" id="unit" [(ngModel)]="item.unit">
+          </td>
+          <td style="text-align: center;">
+            <input
+              style="border: none;outline: 0px; background: transparent;text-align: right;"
+              type="number" class="input-Cell" name="quantity" id="quantity"
+              [(ngModel)]="item.quantity"
+              (ngModelChange)="changeQuantity()"
+            >
+          </td>
+          <td style="text-align: center;">
+            <input
+              style="border: none;outline: 0px; background: transparent;text-align: right;"
+              type="number" class="input-Cell" name="unitPrice" id="unitPrice"
+              [(ngModel)]="item.unitPrice"
+              (ngModelChange)="changeUnitPrice()"
+            >
+          </td>
+          <td style="text-align: center;">
+            <input
+              style="border: none;outline: 0px; background: transparent;text-align: right;"
+              type="number" class="input-Cell" name="amount" id="amount"
+              [(ngModel)]="item.amount"
+              disabled
+            >
+          </td>
+          <td style="text-align: center;">
+            <input
+              style="border: none;outline: 0px; background: transparent;text-align: right;"
+              type="number" class="input-Cell" name="discountRate" id="discountRate"
+              [(ngModel)]="item.discountRate"
+              (ngModelChange)="changeDiscountRate()"
+            >
+          </td>
+          <td style="text-align: center;">
+            <input
+              style="border: none;outline: 0px; background: transparent;text-align: right;"
+              type="number" class="input-Cell" name="discountAmount" id="discountAmount"
+              [(ngModel)]="item.discountAmount"
+              disabled
+            >
+          </td>
+          <td style="text-align: center;">
+            <select class="form-control form-control-sm" id="vatRate" name="vatRate" [(ngModel)]="item.vatRate"
+                    (ngModelChange)="changeVatRate()"
+                    [class.selected]="item === selectRow"
+                    [class.not-selected]="item !== selectRow"
+                    style="border:0px;outline:0px;width: 177px;text-align: right;"
+            >
+                  <option [ngValue]="item1.value"
+                      *ngFor="let item1 of vatRates">{{item1.code}}</option>
+                  </select>
+          </td>
+          <td style="text-align: center;">
+            <input
+              style="border: none;outline: 0px; background: transparent;text-align: right;"
+              type="number" class="input-Cell" name="vatAmount" id="vatAmount"
+              [(ngModel)]="item.vatAmount"
+              disabled
+            >
+          </td>
+        </tr>
+        <tr
+          (click)="addNewRow()"
+          [class.not-selected]="true"
+        >
+          <td>Thêm dòng mới</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr
+          *ngFor="let item of newRow(9 - ppOrderDetails?.length)"
+          [class.not-selected]="true"
+        >
+          <td style="color: #f6f6f2;">.</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

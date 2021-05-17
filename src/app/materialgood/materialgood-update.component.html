@@ -1,0 +1,147 @@
+<nav
+  class="navbar navbar-expand-lg navbar-dark bg-dark"
+  style="background: #f26f21 !important"
+>
+  <label class="navbar-brand">CỬA HÀNG ABC</label>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarText"
+    aria-controls="navbarText"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <a class="navbar-brand" href="#"></a>
+  </div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="" (click)="logout()"
+          >Đăng xuất<span class="sr-only">(current)</span></a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>
+<div style="padding: 1% 2% 1% 2%">
+  <div class="gr-toolbar">
+    <label style="margin: 6px; color: #fff; font-weight: 600">MẶT HÀNG</label>
+    <div class="wrapper-gr-toolbar">
+      <button class="gr-toolbar-button" (click)="back()">Quay Lại</button>
+      <button
+        class="gr-toolbar-button"
+        (click)="save()"
+        style="margin-left: 50px"
+      >
+        Lưu
+      </button>
+    </div>
+  </div>
+  <br />
+  <div class="frm-main container">
+    <div class="row no-gutters">
+      <div class="col-lg-12">
+        <form style="border: none">
+          <div class="row no-gutters">
+            <div class="col-lg-12">
+              <div class="form-group row no-gutters">
+                <label
+                  class="col-sm-1 my-col-form-label"
+                  style="padding-right: 0px; margin-left: 10%"
+                >
+                  Mã Hàng (*)</label
+                >
+                <div class="col-sm-7 pd-l-0 pd-r-10">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="materialGoodCode"
+                    id="materialGoodCode"
+                    [(ngModel)]="materialGood.materialGoodCode"
+                    [disabled]="materialGood && materialGood.id"
+                  />
+                </div>
+              </div>
+              <div class="form-group row no-gutters">
+                <label
+                  class="col-sm-1 my-col-form-label"
+                  style="padding-right: 0px; margin-left: 10%"
+                >
+                  Tên Hàng (*)</label
+                >
+                <div class="col-sm-7 pd-l-0 pd-r-10">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="materialGoodName"
+                    id="materialGoodName"
+                    [(ngModel)]="materialGood.materialGoodName"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-group row no-gutters">
+                <label
+                  class="col-sm-1 my-col-form-label"
+                  style="padding-right: 0px; margin-left: 10%"
+                >
+                  Đơn vị</label
+                >
+                <div class="col-sm-7 pd-l-0 pd-r-10">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="unit"
+                    id="unit"
+                    [(ngModel)]="materialGood.unit"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-group row no-gutters">
+                <label
+                  class="col-sm-1 my-col-form-label"
+                  style="padding-right: 0px; margin-left: 10%"
+                >
+                  Đơn giá (*)</label
+                >
+                <div class="col-sm-7 pd-l-0 pd-r-10">
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="unitPrice"
+                    id="unitPrice"
+                    [(ngModel)]="materialGood.unitPrice"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-group row no-gutters">
+                <label
+                  class="col-sm-1 my-col-form-label"
+                  style="padding-right: 0px; margin-left: 10%"
+                >
+                  Số lượng (*)</label
+                >
+                <div class="col-sm-7 pd-l-0 pd-r-10">
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="quantity"
+                    id="quantity"
+                    [(ngModel)]="materialGood.quantity"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
