@@ -1,12 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PporderService {
-  private resourceUrl = 'http://server-qlch.herokuapp.com/api/pporder';
+  baseUrl = environment.baseUrl;
+  private resourceUrl = this.baseUrl + '/api/pporder';
   constructor(
     private http: HttpClient
   ) { }
