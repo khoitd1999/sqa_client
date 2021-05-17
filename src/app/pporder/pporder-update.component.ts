@@ -61,9 +61,11 @@ export class PporderUpdateComponent implements OnInit {
       this.ppOrderDetails = [];
     }
     this.ppOrderService.loadAllSupplier().subscribe(res => {
-      this.suppliers = res.body;
-      if (this.ppOrder.supplierID) {
-        this.changeSupplier();
+      if (res.body) {
+        this.suppliers = res.body;
+        if (this.ppOrder.supplierID) {
+          this.changeSupplier();
+        }
       }
     });
     this.materialGoodService.findAll().subscribe(res => {
