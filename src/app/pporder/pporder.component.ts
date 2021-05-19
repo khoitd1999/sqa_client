@@ -59,7 +59,7 @@ export class PporderComponent implements OnInit {
 
   doDelete() {
     this.ppOrderService.delete(this.selectRow.id).subscribe(n => {
-      this.toaStr.success('Xóa mặt hàng thành công');
+      this.toaStr.success('Xóa đơn hàng thành công');
       this.ngbModalRef.close();
       this.loadAll();
     });
