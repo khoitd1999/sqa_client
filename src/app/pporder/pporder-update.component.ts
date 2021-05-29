@@ -143,7 +143,7 @@ export class PporderUpdateComponent implements OnInit {
       return;
     }
     this.formatDate();
-    this.ppOrder.totalAmount = this.calculateAmount();
+    // this.ppOrder.totalAmount = this.calculateAmount();
     this.ppOrder.ppOrderDetails = this.ppOrderDetails;
     this.ppOrderService.save(this.ppOrder).subscribe(res => {
       if (res.body === 0) {
