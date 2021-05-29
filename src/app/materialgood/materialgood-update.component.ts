@@ -43,10 +43,10 @@ export class MaterialgoodUpdateComponent implements OnInit {
   }
 
   checkError() {
-    if (!this.materialGood.materialGoodCode || (this.materialGood.materialGoodCode && this.materialGood.materialGoodCode.length === 0)) {
+    if (!this.materialGood.materialGoodCode || (this.materialGood.materialGoodCode && this.materialGood.materialGoodCode.trim().length === 0)) {
       this.toaStr.error('Bạn chưa nhập mã hàng');
       return true;
-    } else if (!this.materialGood.materialGoodName || (this.materialGood.materialGoodName && this.materialGood.materialGoodName.length === 0)) {
+    } else if (!this.materialGood.materialGoodName || (this.materialGood.materialGoodName && this.materialGood.materialGoodName.trim().length === 0)) {
       this.toaStr.error('Bạn chưa nhập tên hàng');
       return true;
     } else if (!this.materialGood.unitPrice || this.materialGood.unitPrice === 0) {
