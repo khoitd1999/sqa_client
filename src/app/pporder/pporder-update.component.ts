@@ -116,8 +116,8 @@ export class PporderUpdateComponent implements OnInit {
         this.toaStr.error('Hàng ' + j + ' có số lượng nhỏ hơn hoặc bằng 0');
         return false;
       }
-      if (!this.ppOrderDetails[i].quantity ||
-        (this.ppOrderDetails[i].quantity &&this.ppOrderDetails[i].unitPrice <= 0)) {
+      if (!this.ppOrderDetails[i].unitPrice ||
+        (this.ppOrderDetails[i].unitPrice &&this.ppOrderDetails[i].unitPrice <= 0)) {
         const j = i + 1;
         this.toaStr.error('Hàng ' + j + ' có đơn giá nhỏ hơn hoặc bằng 0');
         return false;
